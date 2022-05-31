@@ -1,0 +1,27 @@
+{
+  "name": "rest-api",
+  "version": "1.0.0",
+  "description": "Creating a rest api",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "None"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sanjai24/REST_API_first.git"
+  },
+  "keywords": [
+    "none"
+  ],
+  "author": "Sanjais24",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Sanjai24/REST_API_first/issues"
+  },
+  "homepage": "https://github.com/Sanjai24/REST_API_first#readme",
+  "dependencies": {
+    "express": "^4.18.1",
+    "mysql": "^2.18.1"
+  }
+}
