@@ -1,22 +1,14 @@
-import express from 'express';
-import bodyParser from 'body-parser';
-import usersRoutes from './routes/users.js';
-import mysql from 'mysql';
-import db from './db.js';
+var express = require('express');
+var userRoutes = require('./routes/users.js');
+var bodyParser = require('body-parser');
+var cookieParser = require('cookie-parser');
 
 const app = express();
-const PORT = 5000;
-
 app.use(bodyParser.json());
-
-app.use('/', usersRoutes);
-
-app.get('/', (req, res) => {
-    console.log('Home Page');
-    res.send('Welcome to the Homepage');
-});
-
+app.use('/', userRoutes);
+var PORT = 5036;
+app.use(cookieParser());
 
 app.listen(PORT, () => {
-    console.log(`The server is connected to http://localhost/${PORT}`);
+    console.log(`The server is running in http://localhost:${PORT}`);
 });
