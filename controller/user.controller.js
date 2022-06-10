@@ -39,15 +39,16 @@ const user_controller = {
     },
     async getUser(req, res){
         try{
-            let [getUser] = await UserModel.GetUser(req.body);
-            if(getUser.length){
-                res.send(getUser);
-                console.log(getUser);
-            }
-            else{
-                res.send('No user with such credentials');
-                console.log('No such user');
-            }
+            // let [getUser] = await UserModel.GetUser(req.body);
+            // if(getUser.length){
+            //     res.send(getUser);
+            //     console.log(getUser);
+            // }
+            // else{
+            //     res.send('No user with such credentials');
+            //     console.log('No such user');
+            // }
+            res.send("Json");
         }
         catch(err){
             res.send(err);
