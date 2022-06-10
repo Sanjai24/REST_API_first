@@ -58,6 +58,7 @@ const user_controller = {
         try{
             let [getAllUsers] = await UserModel.GetAllUsers();
             if(getAllUsers){
+                console.log("getallusers accessed");
                 res.send(getAllUsers);
                 
             }
