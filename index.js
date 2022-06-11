@@ -7,7 +7,7 @@ var cors = require('cors');
 const app = express();
 app.use(bodyParser.json());
 app.use('/', userRoutes);
-var PORT = 5036;
+var PORT = 5037;
 app.use(cookieParser());
 
 app.listen(PORT, () => {
