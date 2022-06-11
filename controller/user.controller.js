@@ -21,10 +21,20 @@ const user_controller = {
                 if(leng<11){
                     let [User] = await UserModel.CreateUser(UserData);
                 
-            res.send(`User with name ${UserData.name}, ${ UserData.phone_num} added successfully`);
+            res.send(
+            {
+                status: true,
+                        message: `User with name ${UserData.name}, ${ UserData.phone_num} added successfully`,
+                        data: getUser
+            });
                 }
                 else{
-                    res.send('Phone number cannot be more than 10 digits')
+                    res.send(
+                        {
+                            status: false, 
+                            message: 'Phone number cannot be more than 10 digits'
+                        }
+                    )
                 }
                 
             //console.log(User.name, User.designation, User.phone_num);
@@ -39,16 +49,27 @@ const user_controller = {
     },
     async getUser(req, res){
         try{
-            // let [getUser] = await UserModel.GetUser(req.body);
-            // if(getUser.length){
-            //     res.send(getUser);
-            //     console.log(getUser);
-            // }
-            // else{
-            //     res.send('No user with such credentials');
-            //     console.log('No such user');
-            // }
-            res.send("Json");
+            let [getUser] = await UserModel.GetUser(req.body);
+            if(getUser.length){
+                res.send(
+                    {
+                        status: true,
+                        message: `User with name ${getUser.name} retrieved succesfully`,
+                        data: getUser
+                    }
+                    );
+                console.log(getUser);
+            }
+            else{
+                res.send(
+                    {
+                        status: false,
+                        message: "No such user exists",
+                    }
+                );
+                console.log('No such user');
+            }
+        
         }
         catch(err){
             res.send(err);
@@ -63,14 +84,17 @@ const user_controller = {
                 res.send(
                     {
                         status: true, 
-                        message: "Successfull",
+                        message: "All Users retrieved successfully",
                         data: getAllUsers
                     }
                     );
                 
             }
             else{
-                res.send('No data fetched');
+                res.send({
+                    status: false,
+                    message: "No users exist"
+                });
             }
         }
         catch(err){
@@ -95,10 +119,18 @@ const user_controller = {
 
         if(UserData){
             await UserModel.UpdateUser(UserData);
-            res.send(`User with id ${user_id} has been updated`);
+            res.send(
+            {
+                status: true,
+                        message: `User with id ${user_id} has been updated`,
+                        data: getUser
+            });
         }
         else{
-            res.send("No Data Received");
+            res.send({
+                status: false,
+                message: "No Data recieved",
+            });
         }
         }
         catch(err){
@@ -113,10 +145,20 @@ const user_controller = {
         console.log(req.query);
         if(user_id){
             await UserModel.DeleteUser(user_id);
-            res.send(`User with id ${user_id} is deleted.`);
+            res.send(
+            {
+                status: true,
+                        message: `User with id ${user_id} is deleted.`,
+                        data: getUser
+            });
         }
         else{
-            res.send("This id does not exist");
+            res.send(
+                {
+                    status: false,
+                    message: "This id does not exist"
+                }
+            );
         }
 }
         catch(err){
