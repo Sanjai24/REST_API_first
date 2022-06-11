@@ -2,7 +2,7 @@ var mysql = require('mysql2');
 
 let database =  mysql.createPool({
     user: 'root',
-    password: '',
+    password: 'mypassword',
     host: 'localhost',
     database: 'user_model', 
     multipleStatements: true, 
