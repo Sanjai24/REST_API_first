@@ -25,7 +25,7 @@ const user_controller = {
             {
                 status: true,
                         message: `User with name ${UserData.name}, ${ UserData.phone_num} added successfully`,
-                        data: getUser
+                        data: User
             });
                 }
                 else{
@@ -104,6 +104,7 @@ const user_controller = {
     async updateUser(req, res){
         try{
             let {user_id} = req.query;
+            let [getUser] = await UserModel.GetUser(req.query);
         let{
             name,
             designation, 
@@ -140,6 +141,7 @@ const user_controller = {
     async deleteUser(req, res){
         try{ 
         let {user_id} = req.query;
+        let [getUser] = await UserModel.GetUser(req.query);
         
         console.log(user_id);
         console.log(req.query);
