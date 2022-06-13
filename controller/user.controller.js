@@ -54,7 +54,7 @@ const user_controller = {
                 res.send(
                     {
                         status: true,
-                        message: `User with name ${getUser.name} retrieved succesfully`,
+                        message: `User with name ${getUser[0].name} retrieved succesfully`,
                         data: getUser
                     }
                     );
