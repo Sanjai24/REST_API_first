@@ -19,14 +19,24 @@ const user_controller = {
 
             if(UserData){
                 if(leng<11){
-                    let [User] = await UserModel.CreateUser(UserData);
+                    if(UserData.name && UserData.designation && UserData.phone_num){
+                        await UserModel.CreateUser(UserData);
                 
-            res.send(
-            {
-                status: true,
-                        message: `User with name ${UserData.name}, ${ UserData.phone_num} added successfully`,
-                        data: User
-            });
+                        res.send(
+                        {
+                           status: true,
+                           message: `User with name ${UserData.name}, ${ UserData.phone_num} added successfully`,
+
+                         });
+                    }
+                    else{
+                        res.send(
+                            {
+                                status: false,
+                                message: "  Enter all the required details"
+                            }
+                        )
+                    }
                 }
                 else{
                     res.send(
@@ -118,7 +128,7 @@ const user_controller = {
             phone_num
         };
 
-        if(UserData){
+        if(UserData && getUser){
             await UserModel.UpdateUser(UserData);
             res.send(
             {

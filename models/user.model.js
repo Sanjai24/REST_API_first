@@ -11,12 +11,12 @@ const UserModel = {
             let sql = `Select * from users where user_id = ${data.user_id}`;
             return query = await database.promise().query(sql);
         }
-        if(data.name){
-            let sql = `Select * from users where name = '${data.name}'`;
-            return query = await database.promise().query(sql);
-        }
         else if(data.phone_num){
             return query = await database.promise().query(`Select * from users where phone_num = ${data.phone_num}`);
+        }
+        else if(data.name){
+            let sql = `Select * from users where name = '${data.name}'`;
+            return query = await database.promise().query(sql);
         }
         else if(data.designation){
             return query = await database.promise().query(`Select * from users where designation = ${data.designation}`);
